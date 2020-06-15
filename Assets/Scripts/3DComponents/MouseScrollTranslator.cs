@@ -19,13 +19,28 @@ namespace Tom.Translate
         /// The maxiumum position at which this Transform can be at.
         /// </summary>
         [SerializeField] private Vector3 maxPosition;
+
+        /// <summary>
+        /// Deteremines how this Transform translates based on the ScrollWheel input.
+        /// </summary>
+        [SerializeField] private bool inverseTranslation;
+
+        /// <summary>
+        /// The percentage of the min/max position at which this Transform is located at.
+        /// </summary>
+        private float percentageOfMinMax;
+
+        /// <summary>
+        /// The value that can bsed used to multiply the speed at which the translation happens.
+        /// </summary>
+        [SerializeField] private float translationMultiplier;
         #endregion Translation Variables
 
 
         #region Unity Methods
         void Start()
         {
-        
+            percentageOfMinMax = 100f;
         }
 
         void Update()
@@ -33,7 +48,6 @@ namespace Tom.Translate
             if(Input.GetAxis("ScrollWheel") > 0 || Input.GetAxis("ScrollWheel") < 0)
             {
                 Translate(Input.GetAxis("ScrollWheel") > 0);
-                    Debug.Log(Input.GetAxis("ScrollWheel"));
             }
         }
         #endregion Unity Methods
@@ -45,7 +59,13 @@ namespace Tom.Translate
         /// </summary>
         void Translate (bool positiveMove)
         {
-        //    transform.Translate()
+            percentageOfMinMax += (inverseTranslation? -Input.GetAxis("ScrollWheel") : Input.GetAxis("ScrollWheel")) * translationMultiplier;
+            percentageOfMinMax = Mathf.Clamp(percentageOfMinMax, 0f, 100f);
+
+            Vector3 newPosition = minPosition + new Vector3(((maxPosition.x - minPosition.x) / 100f) * percentageOfMinMax,
+                                                            ((maxPosition.y - minPosition.y) / 100f) * percentageOfMinMax,
+                                                            ((maxPosition.z - minPosition.z) / 100f) * percentageOfMinMax);
+            transform.localPosition = newPosition;
         }
         #endregion Translation Methods
     }
