@@ -57,6 +57,11 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1754151513817844916, guid: 7781ee3387c60b74f98fdc14e6d38732,
+        type: 3}
+      propertyPath: m_Text
+      value: Placeholder
+      objectReference: {fileID: 0}
     - target: {fileID: 2472134133351458807, guid: 7781ee3387c60b74f98fdc14e6d38732,
         type: 3}
       propertyPath: m_Sprite
@@ -202,6 +207,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913561088921062270, guid: 7781ee3387c60b74f98fdc14e6d38732,
+        type: 3}
+      propertyPath: m_Text
+      value: This is a placeholder item, when more items are available they will be
+        displayed.
       objectReference: {fileID: 0}
     - target: {fileID: 8685387707668278122, guid: 7781ee3387c60b74f98fdc14e6d38732,
         type: 3}
